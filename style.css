@@ -115,3 +115,11 @@ textarea{
 #date{
     align-self: self-end;
 }
+
+@media screen and (max-width:740px){
+    .container,.notes,.title,.user-note{
+        display: flex;
+        width: 70%;
+    }
+
+}
