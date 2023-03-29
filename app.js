@@ -34,6 +34,7 @@ function addnotes(){
     const notes={
         title:titleVal,
         desc:descVal,
+        date:current_date,
     }
     noteDataArray.push(notes)
     localStorage.setItem('Notes',JSON.stringify(noteDataArray))   
@@ -58,7 +59,7 @@ function displayData(){
             <button class="Delete-btn">Delete Note</button>
             <button class="Edit-btn">Edit Note</button>
         </div>
-        <p id="date">${current_date}</p>
+        <p id="date">${value.date}</p>
         </div>`
         })
     if(notesInfoArr.length !=0){
@@ -77,7 +78,7 @@ function deletenote(){
         if (notesInfoArr.length==0){
             const disp=document.querySelector('.display')
             // let nothingToShow=document.querySelector('#nothingToShow') --the value becomes NULL
-            disp.innerHTML =`<p id="nothingToShow">Nothing is Show! Use "Add Note" for creating your note</p>`
+            disp.innerHTML =`<p id="nothingToShow">Nothing to Show! Use "Add Note" for creating your note</p>`
             }
         })
     })
@@ -87,17 +88,20 @@ function deletenote(){
     editBtn.forEach(function(eBtn,index){
         eBtn.addEventListener('click',function(){
             if(title.value=='' || desc.value==''){
-                alert("First Enter New Title and Note In the Input fileds")
+                alert("To Update the Note Enter Title and Note In the Input Fileds and Then Click Edit button")
             }
+            eBtn.addEventListener('click',function(){
             const updatedNotes={
                 title:title.value,
                 desc:desc.value,
+                date:current_date,
             }
             notesInfoArr[index]=updatedNotes
             localStorage.setItem('Notes',JSON.stringify(notesInfoArr))
             displayData()
             title.value='';
             desc.value='';
-        })   
+            })
+        })
     })
 }
